@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Job Applications Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a React-based dashboard for managing job applications. It features filtering, sorting, pagination, editing, and deletion of applications. The UI includes a smooth light/dark mode toggle, responsive design, and smooth animations to deliver a modern, interactive experience.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Dashboard Layout:**  
+  Displays job applications in a clean, modern interface.
+- **Filtering & Searching:**  
+  - Search bar to filter applications by title or company.
+  - Filter buttons to filter by application status (Applied, Interviewing, Rejected, Offer Received).
+- **Sorting:**  
+  - Dropdown to sort applications by date (newest first or oldest first).
+- **Interactivity:**  
+  - Edit button to update the status of an application.
+  - Delete button to remove an application.
+- **Pagination:**  
+  - Divides the application list into multiple pages for easier navigation.
+- **Theme Toggle:**  
+  - Smooth light/dark mode toggle with React Icons and CSS transitions.
+- **Data Persistence:**  
+  - Uses local storage to save changes, so edits and deletions persist on page reload.
 
-### `npm start`
+## Setup & Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- [Node.js](https://nodejs.org/) and npm installed on your system.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation Steps
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
+   ```
 
-### `npm test`
+### Install Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### Run the Application
+```bash
+npm start
+```
+The app will run at http://localhost:3000
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Deployment
+The project is deployed on [Netlify/Vercel]. You can view the live demo here:
+https://your-demo-url.netlify.app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Assumptions & Challenges
+**Data Persistence:**
+The application uses local storage to persist data. If local storage is empty or invalid, the app falls back to loading data from a JSON file located in public/data/applications.json.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Responsive Design:**
+The UI is designed to work seamlessly on both desktop and mobile devices.
 
-### `npm run eject`
+**Smooth Animations:**
+Animations are implemented using CSS transitions and Framer Motion to create a modern and engaging user experience.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Development Challenges:**
+Integrating pagination, filtering, and sorting with data persistence was challenging. Ensuring that the UI remains responsive and interactive during theme changes also required careful testing and debugging.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Technologies Used
+1) React for building the UI.
+2) React Icons for iconography.
+3) CSS (or Styled Components) for styling.
+4) Local Storage for data persistence.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
