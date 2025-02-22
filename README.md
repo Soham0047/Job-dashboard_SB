@@ -46,7 +46,7 @@ npm start
 The app will run at http://localhost:3000
 
 ## Deployment
-The project is deployed on [Netlify/Vercel]. You can view the live demo here:
+The project is deployed on Vercel. You can view the live demo here:
 https://job-dashboard-sb.vercel.app/
 
 ## Assumptions & Challenges
