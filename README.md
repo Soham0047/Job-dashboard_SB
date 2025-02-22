@@ -47,7 +47,7 @@ The app will run at http://localhost:3000
 
 ## Deployment
 The project is deployed on [Netlify/Vercel]. You can view the live demo here:
-https://your-demo-url.netlify.app
+https://job-dashboard-sb.vercel.app/
 
 ## Assumptions & Challenges
 **Data Persistence:**
@@ -66,5 +66,5 @@ Integrating pagination, filtering, and sorting with data persistence was challen
 1) React for building the UI.
 2) React Icons for iconography.
 3) CSS (or Styled Components) for styling.
-4) Local Storage for data persistence.
+4) Local Storage for data persistence.git 
 
