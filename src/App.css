@@ -1,38 +1,511 @@
-.App {
-  text-align: center;
+/* Importing Google Font*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+/*Global & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+/* App container for overall transitions and spacing */
+.app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* Dark Mode Styles */
+.app.dark {
+  background-color: #2c2c2c;
+  color: #f5f7fa;
+}
+
+/* Header and Navigation */
+header {
+  width: 100%;
+  padding: 40px 60px; /* More spacious padding for a luxurious feel */
+  background: linear-gradient(135deg, #6a82fb, #fc5c7d); /* Modern, vibrant gradient */
+  color: #fff;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+  animation: fadeIn 1.2s ease-out;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+header:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
 }
 
-@keyframes App-logo-spin {
+header h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+
+/* Dashboard */
+.dashboard {
+  flex: 1;
+  padding: 30px 40px;
+}
+
+/* Controls Section */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+
+/* Search Bar */
+.search-bar {
+  flex: 1;
+  max-width: 350px;/* Slightly increased width for a more spacious input */
+  padding: 14px 18px;/* Increased padding for a larger touch target */
+  border: none;
+  border-radius: 30px;
+  background: #fff;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  margin-right: 20px;/* Adds space between the search bar and the filter buttons */
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px); /* Subtle lift on focus */
+}
+
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.filter-buttons button {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  color: #333;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover State */
+.filter-buttons button:hover {
+  background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus State */
+.filter-buttons button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+}
+
+
+
+/* Job Cards */
+.job-list {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.job-card {
+  position: relative;
+  background: linear-gradient(135deg, #ffffff, #fafafa);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* 
+  Create a gradient overlay that will fade in on hover. 
+  It's initially invisible (opacity: 0). 
+*/
+.job-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 15px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* 
+hover effect:
+  - Slightly lift the card on hover (transform: translateY(-5px)).
+  - Add a subtle shadow to the lifted card.
+  - Fade in the overlay.
+*/
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.job-card:hover::before {
+  opacity: 1;
+}
+
+/* Dark Mode Adjustments for Cards */
+.app.dark .job-card {
+  background: linear-gradient(135deg, #444, #3a3a3a);
+  color: #f5f7fa;
+}
+
+.app.dark .job-card::before {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.25));
+}
+
+/* Details Section  */
+.details-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.job-card p {
+  margin-bottom: 8px;
+}
+
+
+/* Edit Button Styling */
+.edit-btn {
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+  margin-right: 12px;
+}
+
+.edit-btn:hover {
+  color: #764ba2;
+}
+
+/* Delete Button Styling */
+.delete-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-size: 1.4rem;
+  transition: color 0.3s ease;
+}
+
+.delete-btn:hover {
+  color: #c0392b;
+}
+
+.status {
+  font-weight: 500;
+  cursor: pointer;
+  color: #667eea;
+  transition: color 0.3s ease;
+}
+
+.status:hover {
+  color: #764ba2;
+}
+
+/* Edit Mode Inputs */
+.edit-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-input {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.edit-actions button:first-child {
+  background-color: #667eea;
+  color: #fff;
+}
+
+.edit-actions button:first-child:hover {
+  background-color: #5a6dc2;
+}
+
+.edit-actions button:last-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.edit-actions button:last-child:hover {
+  background-color: #cfcfcf;
+}
+
+/* Date & Additional Info */
+.job-card p:last-of-type {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Dark Mode specifics */
+.app.dark .search-bar {
+  background: #333;
+  color: #f5f7fa;
+}
+
+.app.dark .filter-buttons button {
+  background: #555;
+  color: #f5f7fa;
+}
+
+/* Toggle Switch Container */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Toggle Icons */
+.toggle-icon {
+  font-size: 20px;
+  transition: color 0.4s ease;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: background-color 0.4s;
+  border-radius: 34px;
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.4s;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #555;
+}
+
+.toggle-switch input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 10px 16px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pagination button:hover {
+  background: #e0e0e0;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pagination button.active {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Sorting Dropdown Container */
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 20px;
+  padding: 4px 10px;
+}
+
+.sort-container label {
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.sort-container label:hover {
+  color: #667eea;
+}
+
+.sort-container select {
+  padding: 10px 40px 10px 16px;  /* top, right, bottom, left */
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff, #f1f1f1);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 2 L5 7 L10 2' stroke='%23333' stroke-width='1' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 10px;
+}
+
+.sort-container select:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.sort-container select:focus {
+  outline: none;
+  border: 2px solid #667eea;
+  transform: scale(1.03);
+}
+
+/* Dark Mode Overrides */
+.app.dark .sort-container label {
+  color: #f5f7fa;
+}
+
+.app.dark .sort-container select {
+  background: linear-gradient(135deg, #444, #333);
+  color: #f5f7fa;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+  border: none;
+}
+
+/* Additional Global Styles */
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+main {
+  flex: 1;
+  padding: 30px 40px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .controls {
+    justify-content: center;
+  }
+  
+  .job-list {
+    grid-template-columns: 1fr;
   }
 }
